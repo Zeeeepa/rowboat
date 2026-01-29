@@ -11,6 +11,7 @@ import { init as initGranolaSync } from "@x/core/dist/knowledge/granola/sync.js"
 import { init as initGraphBuilder } from "@x/core/dist/knowledge/build_graph.js";
 import { init as initPreBuiltRunner } from "@x/core/dist/pre_built/runner.js";
 import { initConfigs } from "@x/core/dist/config/initConfigs.js";
+import { init as initChromeSync } from "@x/core/dist/knowledge/chrome-extension/server/server.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -145,6 +146,9 @@ app.whenReady().then(async () => {
 
   // start pre-built agent runner
   initPreBuiltRunner();
+
+  // start chrome extension sync server
+  initChromeSync();
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
